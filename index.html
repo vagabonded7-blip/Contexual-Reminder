@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Contextual Reminder + GPS + Time</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <header class="app-header">
+    <span class="material-icons app-logo">notifications_active</span>
+    <span class="app-title">Smart Contextual Reminder</span>
+  </header>
+  <main class="app-main" style="max-width:700px;margin:40px auto;padding:20px;">
+    // ...existing code...
+
+    <section id="add-task" class="card">
+      <h3><span class="material-icons">add_task</span> Add a reminder</h3>
+      <div class="input-row">
+        <input id="taskInput" type="text" placeholder="Task (e.g. Buy milk)" />
+        <select id="taskLocation">
+          <option value="home">Home</option>
+          <option value="college">College</option>
+          <option value="supermarket">Supermarket</option>
+          <option value="office">Office</option>
+          <option value="gym">Gym</option>
+        </select>
+        <input type="time" id="taskTime" placeholder="Optional Time"/>
+        <button id="addTaskBtn"><span class="material-icons">add</span></button>
+      </div>
+    </section>
+
+    <section id="tasks" class="card">
+      <h3><span class="material-icons">list</span> Current reminders</h3>
+      <ul id="tasksList"></ul>
+      <button id="clearBtn"><span class="material-icons">delete_sweep</span> Clear All</button>
+    </section>
+
+    <section id="simulate" class="card">
+      <h3><span class="material-icons">location_on</span> Simulate current location</h3>
+      <div class="input-row">
+        <label for="currentLocation">Current location:</label>
+        <select id="currentLocation">
+          <option value="home">Home</option>
+          <option value="college">College</option>
+          <option value="supermarket">Supermarket</option>
+          <option value="office">Office</option>
+          <option value="gym">Gym</option>
+        </select>
+      </div>
+      <p id="output" style="margin-top:12px;font-weight:600;"></p>
+    </section>
+
+    <section id="gpsTracker" class="card">
+      <h3><span class="material-icons">gps_fixed</span> GPS Tracker & Preferred Locations</h3>
+      <div class="input-row">
+        <button id="getLocationBtn"><span class="material-icons">my_location</span> Get Current Location</button>
+        <p id="currentLocationGPS">Latitude: -- , Longitude: --</p>
+      </div>
+      <div class="input-row">
+        <input type="text" id="locationName" placeholder="Name this location" />
+        <button id="saveLocationBtn"><span class="material-icons">save</span></button>
+      </div>
+      <h4>Manual Latitude/Longitude Entry</h4>
+      <div class="input-row">
+        <input type="number" id="manualLat" placeholder="Latitude" step="0.00001">
+        <input type="number" id="manualLng" placeholder="Longitude" step="0.00001">
+        <button id="addManualLocationBtn"><span class="material-icons">add_location</span></button>
+      </div>
+      <h4>Saved Locations:</h4>
+      <ul id="savedLocations"></ul>
+    </section>
+
+    // ...existing code...
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
