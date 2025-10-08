@@ -1,64 +1,8 @@
 /********* Smart Contextual Reminder Logic *********/
 
 // Tasks array
-let tasks = [];
+// ...existing code...
 
-// Add Reminder
-document.getElementById("addTaskBtn").addEventListener("click", function() {
-  let taskName = document.getElementById("taskInput").value.trim();
-  let taskLocation = document.getElementById("taskLocation").value;
-  let taskTime = document.getElementById("taskTime").value; // optional
-
-  if (taskName === "") {
-    alert("Please enter a task name!");
-    return;
-  }
-
-  tasks.push({ task: taskName, location: taskLocation, time: taskTime, triggered: false });
-  document.getElementById("taskInput").value = "";
-  document.getElementById("taskTime").value = "";
-  displayTasks();
-});
-
-// Display all tasks
-function displayTasks() {
-  let list = document.getElementById("tasksList");
-  list.innerHTML = "";
-  tasks.forEach((t) => {
-    let li = document.createElement("li");
-    li.innerText = t.time ? `${t.task} — [${t.location}] at ${t.time}` : `${t.task} — [${t.location}]`;
-    li.style.color = t.triggered ? "gray" : "green";
-    list.appendChild(li);
-  });
-}
-
-// Clear all reminders
-document.getElementById("clearBtn").addEventListener("click", function() {
-  tasks = [];
-  displayTasks();
-  document.getElementById("output").innerText = "";
-});
-
-/********* Simulated Location Trigger *********/
-document.getElementById("currentLocation").addEventListener("change", checkSimulatedLocation);
-
-function checkSimulatedLocation() {
-  let currentLocation = document.getElementById("currentLocation").value;
-  let output = document.getElementById("output");
-
-  let found = false;
-  tasks.forEach((t) => {
-    if (t.location === currentLocation && !t.triggered) {
-      output.innerText = `Reminder: ${t.task}`;
-      speakReminder(`Reminder: ${t.task}`);
-      t.triggered = true;
-      found = true;
-    }
-  });
-
-  if (!found) output.innerText = "No pending reminders for this location.";
-  displayTasks();
-}
 
 /********* GPS Tracker Logic *********/
 let currentLat = null;
@@ -203,6 +147,37 @@ saveRoutineBtn.addEventListener('click', () => {
     routineOutput.textContent = "Your routine saved! " + routine;
   } else {
     routineOutput.textContent = "Please enter your routine.";
+  }
+});
+
+document.getElementById('aiAnalyzeBtn').addEventListener('click', async () => {
+  const routine = document.getElementById('routineInput').value;
+  const mood = document.getElementById('moodInput').value;
+  const aiOutput = document.getElementById('aiOutput');
+  aiOutput.textContent = "Analyzing...";
+
+  // Example payload for OpenAI API (replace with your API endpoint and key)
+  const apiKey = 'YOUR_OPENAI_API_KEY'; // Replace with your actual API key
+  const endpoint = 'https://api.openai.com/v1/chat/completions';
+
+  const prompt = `My mood is ${mood}. My routine: ${routine}. Based on this, give me insights and suggestions for reminders and schedule improvements.`;
+
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: "gpt-3.5-turbo",
+        messages: [{ role: "user", content: prompt }]
+      })
+    });
+    const data = await response.json();
+    aiOutput.textContent = data.choices?.[0]?.message?.content || "No insights received.";
+  } catch (err) {
+    aiOutput.textContent = "Error connecting to AI API.";
   }
 });
 
