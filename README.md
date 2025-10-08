@@ -1,5 +1,5 @@
 # Contexual-Reminder
-##Team : Vaga
+<h2>Team : Vaga</h2>
 Smart Contextual Reminder is a web app that helps users manage reminders based on location and time. It features easy task creation, location simulation, and GPS tracking, allowing users to add, view, and clear reminders, simulate their current location, and save preferred or manual GPS locations—all within a clean, modern interface.
 <h1>Prompt Summary</h1>
 // AI Personal Assistant Enhancement<br>
