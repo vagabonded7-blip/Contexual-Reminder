@@ -110,3 +110,17 @@ hr {
 #taskTime {
   width: 150px;
 }
+
+/* Card Component */
+.card {
+  background: linear-gradient(135deg, #e3eafc 0%, #f7f9fb 100%);
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.08);
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  transition: box-shadow 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 4px 24px rgba(44, 62, 80, 0.16);
+}
