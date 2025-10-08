@@ -181,3 +181,30 @@ setInterval(() => {
   });
   displayTasks();
 }, 60000); // every minute
+
+// Routine setup logic
+const routineInput = document.getElementById('routineInput');
+const saveRoutineBtn = document.getElementById('saveRoutineBtn');
+const routineOutput = document.getElementById('routineOutput');
+
+// Load routine if exists
+window.addEventListener('DOMContentLoaded', () => {
+  const savedRoutine = localStorage.getItem('userRoutine');
+  if (savedRoutine) {
+    routineOutput.textContent = "Your routine: " + savedRoutine;
+    routineInput.value = savedRoutine;
+  }
+});
+
+saveRoutineBtn.addEventListener('click', () => {
+  const routine = routineInput.value.trim();
+  if (routine) {
+    localStorage.setItem('userRoutine', routine);
+    routineOutput.textContent = "Your routine saved! " + routine;
+  } else {
+    routineOutput.textContent = "Please enter your routine.";
+  }
+});
+
+// You can now use localStorage.getItem('userRoutine') in your location/reminder logic
+// to give smart suggestions or trigger reminders based on user's routine and location.

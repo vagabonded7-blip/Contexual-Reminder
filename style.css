@@ -1,10 +1,42 @@
 /* Global Styles */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f7f9fb;
+  background: #f4f6fb;
   color: #222;
   margin: 0;
   padding: 0;
+  min-height: 100vh;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(90deg, #2b4b7c 60%, #5e81ac 100%);
+  color: #fff;
+  padding: 18px 32px;
+  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.08);
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+}
+
+.app-logo {
+  font-size: 2.2em;
+  margin-right: 16px;
+}
+
+.app-title {
+  font-size: 1.6em;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.app-main {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
 main {
@@ -23,29 +55,45 @@ h1 {
 
 h3, h4 {
   color: #2b4b7c;
-  margin-top: 15px;
-  margin-bottom: 8px;
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 /* Inputs, Selects, Buttons */
 input, select, button {
-  margin: 6px 0;
-  padding: 8px 10px;
-  font-size: 15px;
-  border-radius: 6px;
-  border: 1px solid #aaa;
+  margin: 0;
+  padding: 10px 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #f7f9fb;
+  transition: border 0.2s;
+}
+
+input:focus, select:focus {
+  border-color: #2b4b7c;
+  outline: none;
 }
 
 button {
   cursor: pointer;
-  background-color: #2b4b7c;
+  background: linear-gradient(90deg, #2b4b7c 60%, #5e81ac 100%);
   color: #fff;
   border: none;
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(44, 62, 80, 0.08);
   transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 button:hover {
-  background-color: #1d355e;
+  background: linear-gradient(90deg, #1d355e 60%, #4c669f 100%);
 }
 
 /* Horizontal lines */
@@ -58,15 +106,12 @@ hr {
 
 /* Task List */
 #tasksList li {
-  padding: 4px 0;
+  padding: 6px 0;
   list-style: none;
   transition: all 0.3s;
-}
-
-/* Pending vs Triggered Tasks */
-#tasksList li {
   color: green;
 }
+
 #tasksList li.triggered {
   color: gray;
   text-decoration: line-through;
@@ -77,6 +122,7 @@ hr {
   font-weight: 600;
   margin-top: 12px;
   min-height: 20px;
+  color: #2b4b7c;
 }
 
 /* GPS Tracker Section */
@@ -116,11 +162,31 @@ hr {
   background: linear-gradient(135deg, #e3eafc 0%, #f7f9fb 100%);
   border-radius: 14px;
   box-shadow: 0 2px 12px rgba(44, 62, 80, 0.08);
-  padding: 20px 24px;
-  margin-bottom: 24px;
+  padding: 24px 28px;
   transition: box-shadow 0.3s;
 }
 
 .card:hover {
   box-shadow: 0 4px 24px rgba(44, 62, 80, 0.16);
+}
+
+/* Routine Setup Section */
+#routine-setup textarea {
+  width: 60%;
+  min-width: 220px;
+  max-width: 400px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  padding: 10px 12px;
+  font-size: 16px;
+  resize: vertical;
+}
+
+#routineOutput {
+  background: #eef6fc;
+  border-radius: 8px;
+  padding: 10px 14px;
+  min-height: 24px;
+  box-shadow: 0 1px 4px rgba(44, 62, 80, 0.04);
+  font-size: 16px;
 }
